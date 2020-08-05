@@ -25,8 +25,7 @@ export class CreateNetworkComponent implements OnInit {
       .subscribe(data =>
                         {
                           console.log(data);
-                          this.network = new Network();
-                          this.gotoList();
+                          this.gotoNetwork(data.id);
                         },
                   error => console.log(error));
   }
@@ -36,11 +35,8 @@ export class CreateNetworkComponent implements OnInit {
     this.save();
   }
 
-  gotoList(){
-    this.router.navigate(['/networks']);
+  gotoNetwork(id:number){
+    this.router.navigate([`/networks/${id}`]);
   }
-
-
-
 
 }

@@ -45,6 +45,6 @@ export class UpdateNetworkComponent implements OnInit {
   }
 
   gotoList(){
-    this.router.navigateByUrl('/networks');
+    this.router.navigateByUrl(`/networks/${this.id}`);
   }
 }

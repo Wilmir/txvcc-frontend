@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, p, label, input, .card{
+  font-family: 'Nunito', sans-serif;
+}
+
 .container {
   padding: 60px 10px 15px 0;
 }
@@ -33,4 +37,20 @@
 
 .card-title a{
   text-decoration: none;
+}
+
+.card-footer{
+  background: #fff;
+  font-size: 13px;
+}
+
+/*FONT AWESOME ICONS*/
+.fas{
+  font-size: 20px;
+}
+
+.fas:hover{
+  color:#0275d8 !important;
+  font-size: 20px;
+  text-shadow: gray;
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
 import { Network } from 'src/app/common/network';
 import { Router } from '@angular/router';
+import {Title} from "@angular/platform-browser";
+
 
 @Component({
   selector: 'app-network-list',
@@ -13,7 +15,10 @@ export class NetworkListComponent implements OnInit {
   networks: Object[];
 
   constructor(private networkService: NetworkService,
-              private router: Router) { }
+              private router: Router,
+              private titleService:Title) {
+                this.titleService.setTitle("TxVCC - Networks");
+               }
 
   ngOnInit(): void {
     this.listNetworks();

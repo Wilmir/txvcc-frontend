@@ -1,5 +1,7 @@
 import APP_CONFIG from '../app.config';
 import * as d3 from 'd3';
+import { Service } from './service'
+
 
 export class Node implements d3.SimulationNodeDatum{
      // optional - defining optional implementation properties - required for relevant typing assistance
@@ -16,6 +18,7 @@ export class Node implements d3.SimulationNodeDatum{
     name: string;
     isHoming:boolean;
     type?: string;
+    services:Service[];
     dateCreated?:Date;
     lastUpdated?:Date;
 

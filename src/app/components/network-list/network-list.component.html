@@ -1,36 +1,39 @@
 <div class="container">
     <div class="network-cards">
-            <div class="card text-center" style="width: 15rem;">
-                <div class = "my-auto">
-                    <div class = "plus-icon"><a routerLink="/add"><i class="fa fa-plus-circle fa-6x text-primary" aria-hidden="true"></i></a></div>
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text">Create a New Network</p>
-                    </div>
+        <div class="card text-center" style="width: 15rem;">
+            <div class="my-auto">
+                <div class="plus-icon"><a routerLink="/add"><i class="fa fa-plus-circle fa-6x text-primary"
+                            aria-hidden="true"></i></a></div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">Create a New Network</p>
                 </div>
             </div>
+        </div>
 
         <div *ngFor="let network of networks" class="card text-center" style="width: 15rem;">
             <a routerLink="/networks/{{network[0]}}">
                 <img class="card-img-top" src="assets/images/NetworkMap.png" alt="Card image cap">
             </a>
             <div class="card-body">
-                <div class = "row">
-                    <div class = "col-10">
-                        <h5 class="card-title"><a class = "text-dark" routerLink="/networks/{{network[0]}}">{{  network[1] }}</a></h5>
-                    </div>
-                    <div class = "col">
-                        <div class="dropdown">
-                            <!--Trigger-->
-                            <a  type="button" id="dropdownMenu2" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-muted"></i></a>
-                            <!--Menu-->
-                            <div class="dropdown-menu dropdown-primary">
-                              <a class="dropdown-item" routerLink="/networks/{{network[0]}}"><i class="fas fa-project-diagram"></i>&nbsp;&nbsp;&nbsp;View</a>
-                              <a class="dropdown-item" [routerLink]="" (click)="updateNetwork(network[0])"><i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;Update</a>
-                              <a class="dropdown-item" [routerLink]="" (click)="deleteNetwork(network[0])"><i class="fas fa-trash"></i>&nbsp;&nbsp;&nbsp;&nbsp;Delete</a>
-                            </div>
-                          </div>
+                <h5 class="card-title  text-center"><a class="text-dark"
+                        routerLink="/networks/{{network[0]}}">{{  network[1] }}</a></h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{  network[2] }}</h6>
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-between">
+                <div>Updated&nbsp;{{  network[3] | dateAgo }}</div>
+                <div class="dropdown">
+                    <!--Trigger-->
+                    <a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fas fa-ellipsis-v text-muted"></i></a>
+                    <!--Menu-->
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" routerLink="/networks/{{network[0]}}"><i
+                                class="fas fa-project-diagram"></i>&nbsp;&nbsp;&nbsp;View</a>
+                        <a class="dropdown-item" [routerLink]="" (click)="updateNetwork(network[0])"><i
+                                class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;Update</a>
+                        <a class="dropdown-item" [routerLink]="" (click)="deleteNetwork(network[0])"><i
+                                class="fas fa-trash"></i>&nbsp;&nbsp;&nbsp;&nbsp;Delete</a>
                     </div>
                 </div>
             </div>

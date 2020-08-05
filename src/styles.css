@@ -1,36 +1,8 @@
-body, h1, h2, h3, h4, h5, p, label, input, a{
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-}
-
-main>.container {
-  padding: 60px 10px 15px 0;
-  margin-left:10px;
-  margin-right: 10px
-}
-
-.footer {
-  background-color: #f5f5f5;
-  flex-shrink: 0;
-}
-
-.footer>.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  font-size: 70%;
+body, h1, h2, h3, h4, h5, p{
+  font-family: 'Nunito', sans-serif;
 }
 
 code {
   font-size: 80%;
 }
 
-/*FONT AWESOME ICONS*/
-.fas{
-  font-size: 20px;
-}
-
-.fas:hover{
-  color:#0275d8 !important;
-  font-size: 20px;
-  text-shadow: gray;
-}

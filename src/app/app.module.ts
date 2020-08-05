@@ -11,7 +11,9 @@ import {Routes, RouterModule} from '@angular/router';
 import { CreateNetworkComponent } from './components/create-network/create-network.component';
 import { UpdateNetworkComponent } from './components/update-network/update-network.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { D3legendService } from './services/d3legend.service';
+import { D3tooltipService } from './services/d3tooltip.service';
 
 const routes: Routes = [
   {path: 'networks', component: NetworkListComponent},
@@ -29,8 +31,8 @@ const routes: Routes = [
     NetworkListComponent,
     NetworkDetailsComponent,
     CreateNetworkComponent,
-    UpdateNetworkComponent
-  ],
+    UpdateNetworkComponent,
+    DateAgoPipe],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
@@ -38,7 +40,7 @@ const routes: Routes = [
     FormsModule,
     NgbModule
   ],
-  providers: [NetworkService],
+  providers: [NetworkService, D3legendService, D3tooltipService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
