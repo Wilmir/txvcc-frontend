@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, p, label, input, .card{
 }
 
 .fa {
-  color: #0275d8 !important;
+  color: #5cb85c !important;
 }
 
 /*NETWORK CARDS*/
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, p, label, input, .card{
 }
 
 .fas:hover{
-  color:#0275d8 !important;
+  color: #5cb85c !important;
   font-size: 20px;
   text-shadow: gray;
 }
