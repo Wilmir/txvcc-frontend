@@ -13,7 +13,7 @@ export class D3legendService {
   generateLegend(svg:any, links:Link[], nodes:Node[]){
      /*ADDING THE GRAPH LEGENDS*/
      const nodeTypes: boolean[] = [true, false];
-     const linkTypes: string[] = ["no utilization", "<75% utilization", "75 - 90% utilization", ">90 % utilization"];
+     const linkTypes: string[] = ["no utilization", "<50% utilization", "50 - 90% utilization", ">90 % utilization"];
      
      d3.select('.class-legend').remove();
      d3.select('.title-legend').remove();
@@ -42,7 +42,7 @@ export class D3legendService {
        legendRow.append('circle')
          .attr('r', "8")
          .attr('cx',"14")
-         .attr('fill', nodeType ? '#156aa8' : 'orange');
+         .attr('fill', nodeType ? '#0275d8' : '#f0ad4e');
 
        /*Count the node types*/
        let homingCount = 0;
@@ -60,8 +60,8 @@ export class D3legendService {
      })
 
      let unutilized = 0;
-     let lessthan75 = 0;
-     let greaterthan75 = 0;
+     let lessthan50 = 0;
+     let greaterthan50 = 0;
      let greaterthan90 = 0;
 
      /*count the link types*/
@@ -69,10 +69,10 @@ export class D3legendService {
        let percentUtil = link.utilization/link.capacity;
        if(percentUtil > .9){
          greaterthan90++;
-       }else if(percentUtil > .75){
-         greaterthan75++;
+       }else if(percentUtil >= .5){
+         greaterthan50++;
        }else if(percentUtil > 0){
-         lessthan75++;
+         lessthan50++;
        }else{
          unutilized++;
        }
@@ -92,9 +92,9 @@ export class D3legendService {
              console.log(linkType);
             if(linkType === "no utilization"){
               return "gray";
-            }else if(linkType === "<75% utilization"){
+            }else if(linkType === "<50% utilization"){
               return "green";
-            }else if(linkType === "75 - 90% utilization"){
+            }else if(linkType === "50 - 90% utilization"){
               return "orange";
             }else{
               return "red";
@@ -110,10 +110,10 @@ export class D3legendService {
          .text(function(){
            if(linkType === "no utilization"){
              return unutilized + (`${pluralizeArticle(unutilized)}`) + linkType;
-           }else if(linkType === "<75% utilization"){
-             return lessthan75 +  (`${pluralizeArticle(lessthan75)}`) + linkType;
-           }else if(linkType === "75 - 90% utilization"){
-             return greaterthan75 + (`${pluralizeArticle(greaterthan75)}`) + linkType;
+           }else if(linkType === "<50% utilization"){
+             return lessthan50 +  (`${pluralizeArticle(lessthan50)}`) + linkType;
+           }else if(linkType === "50 - 90% utilization"){
+             return greaterthan50 + (`${pluralizeArticle(greaterthan50)}`) + linkType;
            }else{
              return greaterthan90 + (`${pluralizeArticle(greaterthan90)}`)  + linkType;
            }

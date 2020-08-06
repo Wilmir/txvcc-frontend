@@ -44,6 +44,21 @@ export class NetworkService {
     return this.httpClient.delete<string>(networkUrl);
   }
 
+  deleteNodes(networkId: number):Observable<string> {
+    const nodesUrl =`${this.baseUrl}/${networkId}/nodes`;
+    return this.httpClient.delete<string>(nodesUrl);
+  }
+
+  deleteLinks(networkId: number) {
+    const linksUrl =`${this.baseUrl}/${networkId}/links`;
+    return this.httpClient.delete<string>(linksUrl);
+  }
+
+  deleteServices(networkId: number) {
+    const servicesUrl =`${this.baseUrl}/${networkId}/services`;
+    return this.httpClient.delete<string>(servicesUrl);
+  }
+
   postNodes(networkId:number, nodes:Node[]):Observable<Node[]>{
     const networkUrl =`${this.baseUrl}/${networkId}/nodes`;
     return this.httpClient.post<Node[]>(networkUrl, nodes);

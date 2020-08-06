@@ -90,7 +90,7 @@ export class NetworkDetailsComponent implements OnInit {
       const graphlinks: GraphLink[] = [];
 
       this.links.forEach(link => {
-        const graphlink: GraphLink = new GraphLink(link.id, link.type, link.capacity, link.source.name, link.target.name, link.utilization, link.servicedNodes);
+        const graphlink: GraphLink = new GraphLink(link.id, link.type, link.capacity, link.source.name, link.target.name, link.utilization, link.services);
         graphlinks.push(graphlink);
       })
 
@@ -112,11 +112,11 @@ export class NetworkDetailsComponent implements OnInit {
         .data(graphlinks)
         .enter()
         .append('line')
-        .attr('stroke-width', (d: any) => Math.sqrt(d.capacity / 500))
+        .attr('stroke-width', (d: any) => Math.sqrt(d.capacity / 200))
         .attr('stroke', (d:any) => {
           if(d.utilization/d.capacity > 0.9){
             return 'red';
-          }else if(d.utilization/d.capacity > 0.75){
+          }else if(d.utilization/d.capacity >= 0.5){
             return 'orange';
           }else if (d.utilization/d.capacity > 0){
             return 'green';
@@ -124,7 +124,14 @@ export class NetworkDetailsComponent implements OnInit {
             return 'gray';
           }
         })
-        .attr('stroke-opacity', 0.8);
+        .attr('stroke-dasharray', (d:any) => {
+          if(d.type && (d.type.toLowerCase() == "microwave" || d.type.toLowerCase() == "mw")){
+            return '3';
+          }else{
+            return '0';
+          }
+        })
+        .attr('stroke-opacity', 0.5);
       /*END OF ADDING LINE FOR EACH GRAPH LINK*/
 
 
@@ -137,7 +144,10 @@ export class NetworkDetailsComponent implements OnInit {
         .enter()
         .append('circle')
         .attr('r', d => 30 * (d.linkCount / 20) + 5)
-        .attr('fill', (d: any) => d.isHoming ? "#156aa8" : "orange")
+        .attr('fill', (d: any) => d.isHoming ? "#0275d8" : "#f0ad4e")
+        .attr('stroke','#292b2c')
+        .attr('stroke-width','2')
+        .attr('stroke-opacity',.8)
         .call(d3.drag()
         .on('start', dragstarted)
         .on('drag', dragged)
@@ -329,6 +339,37 @@ export class NetworkDetailsComponent implements OnInit {
       data =>{
         console.log("Network: " + id + " has been deleted");
         this.listNetworks();
+      },
+      error => console.log("Deletion error: " + error)
+    );
+  }
+
+  deleteNodes(id:number){
+    this.networkService.deleteNodes(id).subscribe(
+      data =>{
+        console.log("Nodes of network: " + id + " has been deleted");
+        this.visualizeNetwork();
+      },
+      error => console.log("Deletion error: " + error)
+    );
+  }
+
+  deleteLinks(id:number){
+    this.networkService.deleteLinks(id).subscribe(
+      data =>{
+        console.log("Links of network: " + id + " has been deleted");
+        this.visualizeNetwork();
+      },
+      error => console.log("Deletion error: " + error)
+    );
+  }
+
+
+  deleteServices(id:number){
+    this.networkService.deleteServices(id).subscribe(
+      data =>{
+        console.log("Services of network: " + id + " has been deleted");
+        this.visualizeNetwork();
       },
       error => console.log("Deletion error: " + error)
     );

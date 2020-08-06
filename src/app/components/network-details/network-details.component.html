@@ -57,11 +57,21 @@
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">{{ network.networkName }}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <a routerLink="/update/{{network.id}}"><button type="button"
-                class="btn btn-sm btn-outline-secondary">Update</button></a>
-            <button type="button" class="btn btn-sm btn-outline-secondary"
-              (click)="deleteNetwork(network.id)">Delete</button>
+          <div class="btn-toolbar btn-group mr-2">
+            <div class="btn-group mr-2">
+              <a routerLink="/update/{{network.id}}">
+                <button type="button" class="btn btn-outline-secondary">Update</button>
+              </a>
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Delete
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button" (click)="deleteNodes(network.id)">Nodes</button>
+                <button class="dropdown-item" type="button" (click)="deleteLinks(network.id)">Links</button>
+                <button class="dropdown-item" type="button" (click)="deleteServices(network.id)">Services</button>
+                <button class="dropdown-item" type="button" (click)="deleteNetwork(network.id)">Network</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -79,7 +89,8 @@
             </button>
             <div class="dropdown-menu dropdown-menu-right">
               <button class="dropdown-item" type="button" (click)="exportexcel('nodes-table')">Nodes</button>
-              <button *ngIf="links.length>0" class="dropdown-item" type="button" (click)="exportexcel('links-table')">Links</button>
+              <button *ngIf="links.length>0" class="dropdown-item" type="button"
+                (click)="exportexcel('links-table')">Links</button>
             </div>
           </div>
         </div>
@@ -89,24 +100,28 @@
         <table class="table table-striped table-sm" id="links-table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Source</th>
-              <th>Target</th>
-              <th>Type</th>
-              <th>Capacity</th>
-              <th>% Utilization</th>
-              <th>Serviced Nodes</th>
+              <th>link_id</th>
+              <th>source_id</th>
+              <th>source_name</th>
+              <th>target_id</th>
+              <th>target_name</th>
+              <th>type</th>
+              <th>capacity</th>
+              <th>% utilization</th>
+              <th>services count</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let link of links">
               <td>{{ link.id }}</td>
+              <td>{{ link.source.id }}</td>
               <td>{{ link.source.name }}</td>
+              <td>{{ link.target.id }}</td>
               <td>{{ link.target.name }}</td>
               <td>{{ link.type }}</td>
               <td>{{ link.capacity }}</td>
               <td>{{ link.utilization/link.capacity | percent }}</td>
-              <td>{{ link.servicedNodes && link.servicedNodes.length }}</td>
+              <td>{{ link.services && link.services.length }}</td>
             </tr>
           </tbody>
         </table>
@@ -116,10 +131,10 @@
         <table class="table table-striped table-sm" id="nodes-table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Number of Services</th>
+              <th>node_id</th>
+              <th>name</th>
+              <th>type</th>
+              <th>number of services</th>
             </tr>
           </thead>
           <tbody>
