@@ -14,6 +14,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { D3legendService } from './services/d3legend.service';
 import { D3tooltipService } from './services/d3tooltip.service';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 
 const routes: Routes = [
   {path: 'networks', component: NetworkListComponent},
@@ -32,7 +33,8 @@ const routes: Routes = [
     NetworkDetailsComponent,
     CreateNetworkComponent,
     UpdateNetworkComponent,
-    DateAgoPipe],
+    DateAgoPipe,
+    NavMenuComponent],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
