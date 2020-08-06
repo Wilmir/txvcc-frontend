@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@oktadev/schematics": "^2.1.1",
+    "@schematics/angular": "^9.1.0",
     "angular-material": "^1.2.0",
     "bootstrap": "^4.5.0",
     "d3": "^5.16.0",
