@@ -236,20 +236,7 @@ export class NetworkDetailsComponent implements OnInit {
       const uploadedData = (XLSX.utils.sheet_to_json(workSheet));
 
       if (data == this.uploadedLinks) {
-        uploadedData.forEach((d: any) => {
-          const link: Link = new Link();
-          link.capacity = d.capacity;
-
-          const source: Node = new Node(d.source_id);
-          const target: Node = new Node(d.target_id)
-          link.capacity = d.capacity;
-          link.type = d.type;
-          link.source = source;
-          link.target = target;
-
-          this.uploadedLinks.push(link);
-
-        })
+          this.uploadedLinks = uploadedData;
       } else if (data == this.uploadedNodes) {
         uploadedData.forEach((d:any) =>{
           if(d.homing){
@@ -258,23 +245,9 @@ export class NetworkDetailsComponent implements OnInit {
             d.isHoming = false;
           }
         });
-
-
         this.uploadedNodes = uploadedData;
       } else if (data == this.uploadedServices) {
-        uploadedData.forEach((d: any) => {
-          const service: Service = new Service();
-
-          const node: Node = new Node(d.node_id);
-          const homingNode: Node = new Node(d.homing_node_id);
-
-          service.type = d.type;
-          service.capacity = d.capacity;
-          service.node = node;
-          service.homingNode = homingNode;
-
-          this.uploadedServices.push(service);
-        })
+          this.uploadedServices = uploadedData;
       }
 
       console.log(data);
