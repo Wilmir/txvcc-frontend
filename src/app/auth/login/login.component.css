@@ -1,3 +1,7 @@
+:host{
+  font-family: 'Nunito', sans-serif;
+}
+
 .container-fluid{
     padding-top: 80px;
 }

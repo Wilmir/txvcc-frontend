@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
-import { Network } from 'src/app/common/network';
 import { Router } from '@angular/router';
-import {Title} from "@angular/platform-browser";
-
+import { Title } from "@angular/platform-browser";
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-network-list',
@@ -16,7 +15,8 @@ export class NetworkListComponent implements OnInit {
 
   constructor(private networkService: NetworkService,
               private router: Router,
-              private titleService:Title) {
+              private titleService:Title,
+              private localStorageService: LocalStorageService) {
                 this.titleService.setTitle("TxVCC - Networks");
                }
 
@@ -25,7 +25,8 @@ export class NetworkListComponent implements OnInit {
   }
 
   listNetworks() {
-    this.networkService.getNetworkList().subscribe(
+    let username = this.localStorageService.retrieve('username');
+    this.networkService.getNetworkList(username).subscribe(
       data => {
         this.networks = data;
         console.log(this.networks);

@@ -1,0 +1,26 @@
+:host{
+    background: #343a40;
+    flex-grow: 1;
+    font-family: 'Nunito', sans-serif;
+}
+
+:host-context footer {
+    background: #343a40;
+}
+
+.container {
+    padding:auto;
+}
+
+.home-details{
+    padding-top:60px;
+    color:white;
+}
+
+h2{
+    padding-top: 90px;
+}
+
+.fas, .far{
+    opacity: 60%;
+}

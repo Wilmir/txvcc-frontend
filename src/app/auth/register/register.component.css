@@ -1,19 +1,25 @@
+:host{
+  font-family: 'Nunito', sans-serif;
+}
+
 .form-container {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    padding-top: 90px;
+    padding-top: 30px;
     padding-bottom: 40px;
-    background-color: #f5f5f5;
   }
 
-app-register{
+:host {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
 }
   
+h1{
+  color:white;
+}
 
 .form-signin {
     width: 100%;
@@ -81,6 +87,19 @@ app-register{
     color: #777;
   }
   
+.signup-btn{
+  background-color:#0e6b0e !important;
+  border-color: #0e6b0e !important;
+  color: white;
+}
+
+.signup-btn:hover{
+  background-color:#006600 !important;
+  border-color: #006600 !important;
+}
+
+
+
   /* Fallback for Edge
   -------------------------------------------------- */
   @supports (-ms-ime-align: auto) {

@@ -20,9 +20,11 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterSuccessComponent } from './auth/register-success/register-success.component';
 import {NgxWebstorageModule} from 'ngx-webstorage';
-import {AuthGuard} from './auth/auth.guard'
+import {AuthGuard} from './auth/auth.guard';
+import { HomeComponent } from './components/home/home.component'
 
 const routes: Routes = [
+  {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'register-success', component: RegisterSuccessComponent},
   {path: 'login', component: LoginComponent},
@@ -45,7 +47,8 @@ const routes: Routes = [
     NavMenuComponent,
     RegisterComponent,
     LoginComponent,
-    RegisterSuccessComponent
+    RegisterSuccessComponent,
+    HomeComponent
     ],
   imports: [
     RouterModule.forRoot(routes),

@@ -12,12 +12,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class NetworkService {
-  private baseUrl = "http://localhost:8080/api/networks";
+  private baseUrl = "https://txvcc.herokuapp.com/api/networks";
+  private userUrl = "https://txvcc.herokuapp.com/api/users";
 
   constructor(private httpClient: HttpClient) { }
 
-  getNetworkList(): Observable<Object[]>{
-    return this.httpClient.get<Object[]>(this.baseUrl).pipe(
+  getNetworkList(username:string): Observable<Object[]>{
+    const networkURL = `${this.userUrl}/${username}/networks`;
+
+    return this.httpClient.get<Object[]>(networkURL).pipe(
       map(response => {
         console.log(response);
         return response;}

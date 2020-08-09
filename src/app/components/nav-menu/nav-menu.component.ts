@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { LoginDTO } from 'src/app/dto';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,7 +11,20 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
 
-  constructor(private authService:AuthService, private router:Router) { }
+  loginForm:FormGroup;
+  loginDTO:LoginDTO;
+
+  constructor(private authService:AuthService, private router:Router) {
+    this.loginForm = new FormGroup({
+      username: new FormControl(),
+      password: new FormControl()
+    });
+
+    this.loginDTO = {
+      'username':'',
+      'password':''
+    };
+   }
 
   ngOnInit(): void {
   }
@@ -18,9 +33,22 @@ export class NavMenuComponent implements OnInit {
     return this.authService;
   }
 
+  login(){
+    this.loginDTO.username = this.loginForm.get('username').value;
+    this.loginDTO.password = this.loginForm.get('password').value;
+    this.authService.login(this.loginDTO).subscribe(data => {
+      if(data){
+        console.log("login success");
+        this.router.navigateByUrl("/networks")
+      }else{
+        console.log("login failed");
+      }
+    })
+  }
+
   logout(){
     this.authService.logout();
-    this.router.navigateByUrl("/login");
+    this.router.navigateByUrl("/home");
   }
 
 }

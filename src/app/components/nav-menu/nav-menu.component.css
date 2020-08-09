@@ -1,0 +1,14 @@
+:host{
+    font-family: 'Nunito', sans-serif;
+}
+
+.nav-login-btn{
+    background-color:#0e6b0e !important;
+    border-color: #0e6b0e !important;
+}
+
+.nav-login-btn:hover{
+    background-color:#006600 !important;
+    border-color: #006600 !important;
+}
+
