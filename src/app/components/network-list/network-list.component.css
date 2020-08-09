@@ -24,6 +24,7 @@ h1, h2, h3, h4, h5, p, label, input, .card{
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
   margin: 10px;
   cursor: pointer;
+  min-height: 300px !important;
 }
 
 .card:hover {

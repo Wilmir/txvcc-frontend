@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NetworkListComponent } from './components/network-list/network-list.component';
 import { NetworkDetailsComponent } from './components/network-details/network-details.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
+import {HttpClientInterceptor} from './auth/http-client-interceptor.service'
 import {NetworkService} from './services/network.service'
 
 import {Routes, RouterModule} from '@angular/router';
@@ -15,13 +16,20 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { D3legendService } from './services/d3legend.service';
 import { D3tooltipService } from './services/d3tooltip.service';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterSuccessComponent } from './auth/register-success/register-success.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {AuthGuard} from './auth/auth.guard'
 
 const routes: Routes = [
-  {path: 'networks', component: NetworkListComponent},
-  {path: 'networks/:id', component: NetworkDetailsComponent},
-  {path: 'add', component: CreateNetworkComponent},
-  {path: 'update/:id', component: UpdateNetworkComponent},
-  {path: 'add', component: CreateNetworkComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'register-success', component: RegisterSuccessComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'networks', component: NetworkListComponent, canActivate: [AuthGuard]},
+  {path: 'networks/:id', component: NetworkDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'add', component: CreateNetworkComponent, canActivate: [AuthGuard]},
+  {path: 'update/:id', component: UpdateNetworkComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/networks', pathMatch: 'full'},
   {path: '**', redirectTo: '/networks', pathMatch: 'full'}
 ];
@@ -34,15 +42,22 @@ const routes: Routes = [
     CreateNetworkComponent,
     UpdateNetworkComponent,
     DateAgoPipe,
-    NavMenuComponent],
+    NavMenuComponent,
+    RegisterComponent,
+    LoginComponent,
+    RegisterSuccessComponent
+    ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    ReactiveFormsModule,
+    NgbModule,
+    NgxWebstorageModule.forRoot()
   ],
-  providers: [NetworkService, D3legendService, D3tooltipService],
+  providers: [NetworkService, D3legendService, D3tooltipService,
+              {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

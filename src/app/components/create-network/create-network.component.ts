@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
-import { Network } from 'src/app/common/network';
+import { NetworkDTO } from 'src/app/dto/';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create-network',
@@ -10,33 +11,40 @@ import { Router } from '@angular/router';
 })
 export class CreateNetworkComponent implements OnInit {
 
-  network: Network = new Network();
-  submitted = false;
+  addNetworkForm:FormGroup;
+  networkName = new FormControl('');
+  description = new FormControl('');
+  networkDTO: NetworkDTO;
 
   constructor(private networkService: NetworkService, private router: Router) {
+    this.addNetworkForm = new FormGroup({
+      networkName:this.networkName,
+      description:this.description
+    })
+    this.networkDTO = {
+      networkName:'',
+      description:''
+    }
    }
 
   ngOnInit(): void {
 
   }
 
-  save() {
-    this.networkService.createNetwork(this.network)
-      .subscribe(data =>
-                        {
-                          console.log(data);
-                          this.gotoNetwork(data.id);
-                        },
-                  error => console.log(error));
-  }
-
   onSubmit(){
-    this.submitted = true;
-    this.save();
+    this.networkDTO.networkName = this.addNetworkForm.get('networkName').value;
+    this.networkDTO.description = this.addNetworkForm.get('description').value;
+    this.networkService.createNetwork(this.networkDTO)
+    .subscribe(data =>
+                      {
+                        console.log(data);
+                        this.gotoNetwork();
+                      },
+                error => console.log(error));
   }
 
-  gotoNetwork(id:number){
-    this.router.navigate([`/networks/${id}`]);
+  gotoNetwork(){
+    this.router.navigate([`/networks`]);
   }
 
 }

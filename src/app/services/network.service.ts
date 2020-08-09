@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Network } from '../common/network';
 import { Link } from '../common/link';
 import { Node } from '../common/node';
+import { NetworkDTO } from '../dto';
 import { Service } from '../common/service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -29,8 +30,8 @@ export class NetworkService {
     return this.httpClient.get<Network>(networkUrl);
   }
 
-  createNetwork(network: Network):Observable<Network>{
-    return this.httpClient.post<Network>(`${this.baseUrl}`, network);
+  createNetwork(networkDTO: NetworkDTO):Observable<Network>{
+    return this.httpClient.post<Network>(`${this.baseUrl}`, networkDTO);
   }
 
   updateNetwork(networkId: number, network: any): Observable<Network>{

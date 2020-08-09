@@ -1,20 +1,14 @@
 <div class="container">
   <h2>Create A Network</h2>
-  <div [hidden]="submitted">
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
+  <div>
+    <form [formGroup]="addNetworkForm" (ngSubmit)="onSubmit()">
+      <div  class="form-group">
         <label for="networkName">Name</label>
-        <input type="text" class="form-control" id="networkName" required [(ngModel)]="network.networkName"
-          name="networkName"><br>
+        <input type="text" [formControlName]="'networkName'" class="form-control" id="networkName" required name="networkName"><br>
         <label for="description">Description</label>
-        <input type="textarea" class="form-control" id="description" required [(ngModel)]="network.description"
-            name="description">
+        <input type="textarea" [formControlName]="'description'" class="form-control" id="description" required name="description">
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
     </form>
-  </div>
-  <div [hidden]="!submitted">
-    <h4>You submitted successfully!</h4>
-    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
   </div>
 </div>
