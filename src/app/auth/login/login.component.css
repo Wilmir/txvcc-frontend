@@ -1,9 +1,14 @@
 :host{
   font-family: 'Nunito', sans-serif;
+  background: #343a40;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.container-fluid{
-    padding-top: 80px;
+h1, .remember-me{
+  color:white
 }
 
 .bd-placeholder-img {
@@ -52,3 +57,13 @@
     border-top-right-radius: 0;
   }
   
+  .login-btn{
+    background-color:#0e6b0e !important;
+    border-color: #0e6b0e !important;
+    color: white;
+  }
+
+  .login-btn:hover{
+    background-color:#006600 !important;
+    border-color: #006600 !important;
+  }

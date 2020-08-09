@@ -2,6 +2,9 @@
     background: #343a40;
     flex-grow: 1;
     font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 :host-context footer {

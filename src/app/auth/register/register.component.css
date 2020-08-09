@@ -1,5 +1,8 @@
 :host{
   font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form-container {
