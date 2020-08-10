@@ -8,6 +8,8 @@ import * as d3 from 'd3';
 import { identifierModuleUrl, WritePropExpr, ReturnStatement } from '@angular/compiler';
 import * as XLSX from 'xlsx';
 import {Title} from "@angular/platform-browser";
+import { NgxSpinnerService } from "ngx-spinner";  
+
 
 
 const FORCES = {
@@ -37,7 +39,8 @@ export class NetworkDetailsComponent implements OnInit {
     private router:Router,
     private d3LegendService:D3legendService,
     private d3TooltipService:D3tooltipService,
-    private titleService:Title) { 
+    private titleService:Title,
+    private spinnerService: NgxSpinnerService) { 
     this.titleService.setTitle("TxVcc - Network" );
   }
 
@@ -81,6 +84,9 @@ export class NetworkDetailsComponent implements OnInit {
     /*CREATE THE GRAPH*/  
     let networkRequest = this.networkService.getNetwork(this.currentNetworkId);
 
+    /*SHOW SPINNER WHILE WAITING FOR THE DATA*/  
+    this.spinnerService.show();  
+
     networkRequest.subscribe(results => {
 
       this.nodes = results.nodes;
@@ -93,6 +99,10 @@ export class NetworkDetailsComponent implements OnInit {
         const graphlink: GraphLink = new GraphLink(link.id, link.type, link.capacity, link.source.name, link.target.name, link.utilization, link.services);
         graphlinks.push(graphlink);
       })
+
+      /*HIDE THE SPINNER WHEN THE DATA IS RECEIVE*/
+      this.spinnerService.hide();  
+
 
       /*Adds the Network Summary Legend*/
       this.d3LegendService.generateLegend(graphSvg, this.links, this.nodes);

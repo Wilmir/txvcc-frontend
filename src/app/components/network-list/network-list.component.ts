@@ -3,6 +3,8 @@ import { NetworkService } from 'src/app/services/network.service';
 import { Router } from '@angular/router';
 import { Title } from "@angular/platform-browser";
 import { LocalStorageService } from 'ngx-webstorage';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-network-list',
@@ -14,11 +16,12 @@ export class NetworkListComponent implements OnInit {
   networks: Object[];
 
   constructor(private networkService: NetworkService,
-              private router: Router,
-              private titleService:Title,
-              private localStorageService: LocalStorageService) {
-                this.titleService.setTitle("TxVCC - Networks");
-               }
+    private router: Router,
+    private titleService: Title,
+    private localStorageService: LocalStorageService,
+    private spinnerService: NgxSpinnerService) {
+    this.titleService.setTitle("TxVCC - Networks");
+  }
 
   ngOnInit(): void {
     this.listNetworks();
@@ -26,17 +29,21 @@ export class NetworkListComponent implements OnInit {
 
   listNetworks() {
     let username = this.localStorageService.retrieve('username');
+    /*SHOW SPINNER WHILE WAITING FOR THE DATA*/
+    this.spinnerService.show();
     this.networkService.getNetworkList(username).subscribe(
       data => {
         this.networks = data;
         console.log(this.networks);
+        /*HIDE THE SPINNER WHEN THE DATA IS RECEIVE*/
+        this.spinnerService.hide();
       }
     )
   }
 
-  deleteNetwork(id:number){
+  deleteNetwork(id: number) {
     this.networkService.deleteNetwork(id).subscribe(
-      data =>{
+      data => {
         console.log("Network: " + id + " has been deleted");
         this.listNetworks();
       },
@@ -44,9 +51,9 @@ export class NetworkListComponent implements OnInit {
     );
   }
 
-  updateNetwork(id:number){
-    this.router.navigate(['update',id]);
+  updateNetwork(id: number) {
+    this.router.navigate(['update', id]);
   }
-  
+
 
 }

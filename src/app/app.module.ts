@@ -25,6 +25,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component'
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { NgxSpinnerModule } from "ngx-spinner";  
+
 
 
 const routes: Routes = [
@@ -65,7 +67,9 @@ const routes: Routes = [
     NgbModule,
     NgxWebstorageModule.forRoot(),
     NgxPageScrollCoreModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    NgxSpinnerModule  
+
   ],
   providers: [NetworkService, D3legendService, D3tooltipService,
               {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
