@@ -77,7 +77,7 @@ export class NetworkDetailsComponent implements OnInit {
       .force('charge', d3.forceManyBody().strength((d:Node, i) => FORCES.CHARGE * (d.linkCount/this.nodes.length) - 10).distanceMax(500))
       .force('center', d3.forceCenter(width*.6, height*.4))
       .force('collide', d3.forceCollide().strength(FORCES.COLLISION).radius((d:Node) => (d.linkCount/this.nodes.length) + 5).iterations(3))
-      .alphaTarget(0.6);
+      .alphaTarget(0.5);
     /*CREATE THE GRAPH*/  
     let networkRequest = this.networkService.getNetwork(this.currentNetworkId);
 

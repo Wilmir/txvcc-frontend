@@ -60,7 +60,7 @@
           <div class="btn-toolbar btn-group mr-2">
             <div class="btn-group mr-2">
               <a routerLink="/update/{{network.id}}">
-                <button type="button" class="btn btn-outline-secondary">Update</button>
+                <button type="button" class="btn btn-success text-white">Update</button>
               </a>
               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Delete
@@ -83,7 +83,7 @@
         <h1 *ngIf="nodes.length>0 || links.length>0" class="h2">Network Details</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div *ngIf="nodes.length>0 || links.length>0" class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Export to XLSX
             </button>
