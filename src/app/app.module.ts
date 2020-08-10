@@ -21,10 +21,15 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterSuccessComponent } from './auth/register-success/register-success.component';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import {AuthGuard} from './auth/auth.guard';
-import { HomeComponent } from './components/home/home.component'
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component'
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'register-success', component: RegisterSuccessComponent},
   {path: 'login', component: LoginComponent},
@@ -48,7 +53,8 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     RegisterSuccessComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
     ],
   imports: [
     RouterModule.forRoot(routes),
@@ -57,7 +63,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    NgxPageScrollCoreModule,
+    NgxPageScrollModule
   ],
   providers: [NetworkService, D3legendService, D3tooltipService,
               {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],

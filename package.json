@@ -36,6 +36,8 @@
     "d3": "^5.16.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "ngx-page-scroll": "^7.0.3",
+    "ngx-page-scroll-core": "^7.0.3",
     "ngx-webstorage": "^6.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",

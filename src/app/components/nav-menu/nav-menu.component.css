@@ -1,6 +1,9 @@
 :host{
     font-family: 'Nunito', sans-serif;
 }
+nav{
+    background: #141e30;
+}
 
 .nav-login-btn{
     background-color:#0e6b0e !important;

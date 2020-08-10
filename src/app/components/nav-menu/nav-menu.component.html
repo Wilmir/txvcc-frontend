@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <a class="navbar-brand ml-3 mx-2" routerLink="/networks">TxVCC</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,6 +9,9 @@
         <ul class="navbar-nav mr-auto">
           <li *ngIf = "authenticationService.isAuthenticated()" class="nav-item active">
             <a class="nav-link" routerLink="/add"><i class="fas fa-plus"></i><span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/about" tabindex="-1" aria-disabled="true">About</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Help</a>
