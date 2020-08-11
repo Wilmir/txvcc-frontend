@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { LoginDTO } from 'src/app/dto';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-nav-menu',
@@ -14,7 +16,7 @@ export class NavMenuComponent implements OnInit {
   loginForm:FormGroup;
   loginDTO:LoginDTO;
 
-  constructor(private authService:AuthService, private router:Router) {
+  constructor(private authService:AuthService, private router:Router,  private spinnerService: NgxSpinnerService) {
     this.loginForm = new FormGroup({
       username: new FormControl(),
       password: new FormControl()
@@ -36,9 +38,11 @@ export class NavMenuComponent implements OnInit {
   login(){
     this.loginDTO.username = this.loginForm.get('username').value;
     this.loginDTO.password = this.loginForm.get('password').value;
+    this.spinnerService.show();
     this.authService.login(this.loginDTO).subscribe(data => {
       if(data){
         console.log("login success");
+        this.spinnerService.hide();
         this.router.navigateByUrl("/networks")
       }else{
         console.log("login failed");

@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { LoginDTO } from 'src/app/dto';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
   loginDTO:LoginDTO;
 
   constructor(private authService:AuthService,
-              private router:Router) { 
+              private router:Router,  
+              private spinnerService: NgxSpinnerService) { 
     this.loginForm = new FormGroup({
       username: new FormControl(),
       password: new FormControl()
@@ -34,9 +37,11 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.loginDTO.username = this.loginForm.get('username').value;
     this.loginDTO.password = this.loginForm.get('password').value;
+    this.spinnerService.show();
     this.authService.login(this.loginDTO).subscribe(data => {
       if(data){
         console.log("login success");
+        this.spinnerService.hide();
         this.router.navigateByUrl("/networks")
       }else{
         console.log("login failed");

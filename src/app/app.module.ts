@@ -7,6 +7,8 @@ import { NetworkDetailsComponent } from './components/network-details/network-de
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {HttpClientInterceptor} from './auth/http-client-interceptor.service'
 import {NetworkService} from './services/network.service'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 
 import {Routes, RouterModule} from '@angular/router';
 import { CreateNetworkComponent } from './components/create-network/create-network.component';
@@ -68,7 +70,8 @@ const routes: Routes = [
     NgxWebstorageModule.forRoot(),
     NgxPageScrollCoreModule,
     NgxPageScrollModule,
-    NgxSpinnerModule  
+    NgxSpinnerModule  ,
+    BrowserAnimationsModule
 
   ],
   providers: [NetworkService, D3legendService, D3tooltipService,
