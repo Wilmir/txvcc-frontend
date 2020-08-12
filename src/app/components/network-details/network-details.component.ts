@@ -197,6 +197,10 @@ export class NetworkDetailsComponent implements OnInit {
 
       }
 
+    },
+    error => {
+      console.log(error);
+      this.spinnerService.hide();
     });
 
     function dragstarted(d) {

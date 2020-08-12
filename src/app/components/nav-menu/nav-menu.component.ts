@@ -47,6 +47,9 @@ export class NavMenuComponent implements OnInit {
       }else{
         console.log("login failed");
       }
+    }, 
+    error =>{
+      this.spinnerService.hide();
     })
   }
 

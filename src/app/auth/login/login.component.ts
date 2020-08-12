@@ -46,6 +46,9 @@ export class LoginComponent implements OnInit {
       }else{
         console.log("login failed");
       }
+    },
+    error => {
+      this.spinnerService.hide();
     })
   }
 

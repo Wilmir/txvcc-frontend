@@ -37,6 +37,10 @@ export class NetworkListComponent implements OnInit {
         console.log(this.networks);
         /*HIDE THE SPINNER WHEN THE DATA IS RECEIVE*/
         this.spinnerService.hide();
+      },
+      error =>{
+        console.log(error);
+        this.spinnerService.hide();
       }
     )
   }
