@@ -27,13 +27,15 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component'
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
-import { NgxSpinnerModule } from "ngx-spinner";  
+import { NgxSpinnerModule } from "ngx-spinner";
+import { HelpComponent } from './components/help/help.component';  
 
 
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'help', component: HelpComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'register-success', component: RegisterSuccessComponent},
   {path: 'login', component: LoginComponent},
@@ -58,7 +60,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterSuccessComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    HelpComponent
     ],
   imports: [
     RouterModule.forRoot(routes),
