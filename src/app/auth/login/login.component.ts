@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
         this.spinnerService.hide();
         this.router.navigateByUrl("/networks")
       }else{
+        this.spinnerService.hide();
         console.log("login failed");
       }
     },

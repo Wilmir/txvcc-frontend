@@ -46,6 +46,7 @@ export class NavMenuComponent implements OnInit {
         this.router.navigateByUrl("/networks")
       }else{
         console.log("login failed");
+        this.spinnerService.hide();
       }
     }, 
     error =>{

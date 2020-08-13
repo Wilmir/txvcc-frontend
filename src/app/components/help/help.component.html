@@ -1,1 +1,244 @@
-<p>help works!</p>
+<div class="container">
+  <h1>Welcome to the Help Center</h1>
+  <p class=lead>This article will walk you through, how you can use the features of the application.</p>
+  <h2>Table of Content</h2>
+  <ul>
+    <li>Step 1: Create A Network</li>
+    <li>Step 2: Add Node</li>
+    <li>Step 3: Add Link</li>
+    <li>Step 4: Add Services</li>
+  </ul>
+
+
+  <div class="d-flex flex-column">
+    <div class="row d-flex flex-row" id="createNetwork">
+      <div class="col">
+        <h3>Step 1: Create A New Network</h3>
+        <p>In your networks page, click the card with a plus ('+') icon. (Alternatively, you can also click the plus
+          icon in the nav bar).</p>
+        <div class="image">
+          <img class="img-fluid" src="assets/help/createnetwork.png">
+        </div>
+        <p>
+          You will be redirected to a form asking for the name of your network.
+        </p>
+        <ul>
+          <li>
+            On the <span class="font-weight-bold">Name</span> field, input the name of the network you are creating. It
+            is suggested that you use a unique name, that will enable you to easily identify this network as the number
+            of networks that you app-create-network in this application increase.
+          </li>
+          <li>
+            On the <span class="font-weight-bold">Description</span> field, provide a descriptive characteristic of your
+            network.
+          </li>
+          <li>
+            When you <span class="font-weight-bold">Submit</span>, the network template will be created and a new card
+            will be created in your networks page.
+            The submission will automatically bring you to the networks page.
+          </li>
+        </ul>
+        <div class="image">
+          <img class="img-fluid" src="assets/help/createnetworkform.png">
+        </div>
+      </div>
+    </div>
+    <hr class="mb-5" id="addNode">
+    <div class="row d-flex flex-row mt-4">
+      <div class="col">
+        <h3>Step 2: Add The List of Nodes</h3>
+        <p>To start adding your nodes or to update your network, click on the network's card from the network page.</p>
+        <div class="image">
+          <img class="img-fluid" src="assets/help/networkspage.png">
+        </div>
+        <p>If your network is new, you will see an empty network page. Otherwise, you will see the diagram and other
+          network details.</p>
+        <div class="image">
+          <img class="img-fluid" src="assets/help/emptynetworkspage.png">
+        </div>
+        <p>The sidebar on the left will have a file upload button which you can use to upload the excel file (.XLSX)
+          your nodes.</p>
+        <h4>Nodes Excel File Requirement</h4>
+        <p>The excel file should contain 2 columns: name and homing specifier of the node.</p>
+        <p>To identify a homing node, the value of homing column should be set to 1, if it is a regular node set it to
+          0.</p>
+        <p>You can specify more than one homing node in the list</p>
+        <p>Sample: </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm" id="nodes-table">
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>homing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dublin</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td>Swords</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Tallagt</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Dun Laoighre</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Wicklow</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Naas</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Drogheda</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>Navan</td>
+                  <td>0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <div>
+          <button type="button" class="btn btn-secondary" (click)="exportexcel('nodes-table')">Download Nodes
+            Template</button>
+        </div>
+        <h4>Uploading Your File</h4>
+        <p>When your excel file is ready, click 'Choose file' and the click Upload.</p>
+        <p>The system will look for the 'name' and 'type' column and add those data to the network</p>
+        <p>Once they are added, the network canvass will refresh and reflect the nodes.</p>
+        <ul>
+          <li>Blue nodes are the homing nodes</li>
+          <li>Yellow nodes are the regular nodes</li>
+        </ul>
+        <div class="image">
+          <img class="img-fluid" src="assets/help/addNode.png">
+        </div>
+        <p>You will also find a table containing the list of your nodes assigned with and IDs. You will need these IDs
+          when uploading links and services.</p>
+      </div>
+    </div>
+    <hr class="mb-5" id="addLink">
+    <div class="row d-flex flex-row">
+      <div class="col">
+        <h3>Step 2: Add The List of Links</h3>
+        <p>As a requirement, you can only add links to a network, when the nodes for these links are already uploaded.
+        </p>
+        <p>If you have not uploaded the nodes yet, please see <a pageScroll href="#addNode">Step 1: Add List ofNodes</a></p>
+        <p>The Upload Link button will appear after the list of nodes have been uploaded.</p>
+        <h4>Links Excel File Requirement</h4>
+        <p>The excel file should contain 4 columns: source_id, target_id, capacity, type</p>
+        <p>The source_id, and target_id can be obtained by downloading the nodes list below the network diagram</p>
+        <p>The capacity unit is suggested to be in Mbps. You can apply other unit as well as long as it is the same as the unit that you will use with the services.</p>
+
+        <div class="image">
+          <img class="img-fluid" src="assets/help/exportNode.png">
+        </div>
+        <p>Sample: </p>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm" id="links-table">
+            <thead>
+              <tr>
+                <th>source_id</th>
+                <th>source_name</th>
+                <th>target_id</th>
+                <th>target_name</th>
+                <th>capacity</th>
+                <th>type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+              <tr>
+                <td>1141</td>
+                <td>Swords</td>
+                <td>1148</td>
+                <td>Dublin</td>
+                <td>100</td>
+                <td>microwave</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary" (click)="exportexcel('links-table')">Download Links
+            Template</button>
+        </div>
+        <h4>Uploading Your File</h4>
+        <p>When your excel file is ready, click 'Choose file' and the click Upload.</p>
+        <p>The system will look for the 'name' and 'type' column and add those data to the network</p>
+        <p>Once they are added, the network canvass will refresh and reflect the nodes.</p>
+        <ul>
+          <li>Blue nodes are the homing nodes</li>
+          <li>Yellow nodes are the regular nodes</li>
+        </ul>
+        <p>You will also find a table containing the list of your nodes assigned with and IDs. You will need these IDs
+          when uploading links and services.</p>
+      </div>
+    </div>
+  </div>
+</div>
