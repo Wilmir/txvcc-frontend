@@ -1,3 +1,17 @@
+:host{
+    font-family: 'Nunito', sans-serif;
+}
+
 .container{
     padding-top: 70px;
+}
+
+table{
+    font-size: 12px;
+}
+
+h4{
+    margin-top: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }

@@ -62,7 +62,8 @@
               <a routerLink="/update/{{network.id}}">
                 <button type="button" class="btn btn-success text-white">Update</button>
               </a>
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 Delete
               </button>
               <div class="dropdown-menu dropdown-menu-right">
@@ -95,61 +96,63 @@
           </div>
         </div>
       </div>
-      <h3 *ngIf="links.length>0">Links</h3>
-      <div *ngIf="links.length>0" class="table-responsive">
-        <table class="table table-striped table-sm" id="links-table">
-          <thead>
-            <tr>
-              <th>link_id</th>
-              <th>source_id</th>
-              <th>source_name</th>
-              <th>target_id</th>
-              <th>target_name</th>
-              <th>type</th>
-              <th>capacity</th>
-              <th>% utilization</th>
-              <th>services count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let link of links">
-              <td>{{ link.id }}</td>
-              <td>{{ link.source.id }}</td>
-              <td>{{ link.source.name }}</td>
-              <td>{{ link.target.id }}</td>
-              <td>{{ link.target.name }}</td>
-              <td>{{ link.type }}</td>
-              <td>{{ link.capacity }}</td>
-              <td>{{ link.utilization/link.capacity | percent }}</td>
-              <td>{{ link.services && link.services.length }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3 *ngIf="nodes.length>0">Nodes</h3>
-      <div *ngIf="nodes.length>0" class="table-responsive">
-        <table class="table table-striped table-sm" id="nodes-table">
-          <thead>
-            <tr>
-              <th>node_id</th>
-              <th>name</th>
-              <th>type</th>
-              <th>number of services</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let node of nodes">
-              <td>{{ node.id }}</td>
-              <td>{{ node.name }}</td>
-              <td>{{ node.isHoming }}</td>
-              <td>{{ node.services.length }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="container bg-light report-container">
+        <h3 *ngIf="links.length>0" class="px-4 py-2 mt-2">Links</h3>
+        <div *ngIf="links.length>0" class="table-responsive px-4 mb-2">
+          <table class="table table-sm table-striped borderless" id="links-table">
+            <thead>
+              <tr class="bg-dark text-white">
+                <th>link_id</th>
+                <th>source_id</th>
+                <th>source_name</th>
+                <th>target_id</th>
+                <th>target_name</th>
+                <th>type</th>
+                <th>capacity</th>
+                <th>% utilization</th>
+                <th>services count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let link of links">
+                <td>{{ link.id }}</td>
+                <td>{{ link.source.id }}</td>
+                <td>{{ link.source.name }}</td>
+                <td>{{ link.target.id }}</td>
+                <td>{{ link.target.name }}</td>
+                <td>{{ link.type }}</td>
+                <td>{{ link.capacity }}</td>
+                <td [ngStyle]="((link.utilization/link.capacity) >= .9) ? {'color': 'red'} : (((link.utilization/link.capacity) >= .5) ? {'color': 'orange'} : {'color':'green'})">{{ link.utilization/link.capacity | percent }}</td>
+                <td>{{ link.services && link.services.length }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 *ngIf="nodes.length>0" class="px-4 py-2">Nodes</h3>
+        <div *ngIf="nodes.length>0" class="table-responsive px-4">
+          <table class="table table-sm table-striped borderless" id="nodes-table">
+            <thead>
+              <tr class="bg-dark text-white">
+                <th>node_id</th>
+                <th>name</th>
+                <th>type</th>
+                <th>number of services</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let node of nodes">
+                <td>{{ node.id }}</td>
+                <td>{{ node.name }}</td>
+                <td [ngStyle]="node.isHoming?{'color': 'green'} : {'color': 'orange'}">{{ node.isHoming }}</td>
+                <td>{{ node.services.length }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   </div>
-  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Loading network data.... </p>  
-  </ngx-spinner>   
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Loading network data.... </p>
+  </ngx-spinner>
 </div>

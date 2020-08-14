@@ -154,7 +154,7 @@ export class NetworkDetailsComponent implements OnInit {
         .enter()
         .append('circle')
         .attr('r', d => 30 * (d.linkCount / 20) + 5)
-        .attr('fill', (d: any) => d.isHoming ? "#0275d8" : "#f0ad4e")
+        .attr('fill', (d: any) => d.isHoming ? "#009900" : "#f0ad4e")
         .attr('stroke','#292b2c')
         .attr('stroke-width','2')
         .attr('stroke-opacity',.8)

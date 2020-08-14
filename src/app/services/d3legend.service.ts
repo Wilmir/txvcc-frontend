@@ -42,7 +42,7 @@ export class D3legendService {
        legendRow.append('circle')
          .attr('r', "8")
          .attr('cx',"14")
-         .attr('fill', nodeType ? '#0275d8' : '#f0ad4e');
+         .attr('fill', nodeType ? '#009900' : '#f0ad4e');
 
        /*Count the node types*/
        let homingCount = 0;
